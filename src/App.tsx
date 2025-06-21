@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import AnimatedBackground from './components/AnimatedBackground';
 import ElectricCursor from './components/ElectricCursor';
 import FloatingLines from './components/FloatingLines';
+import CursorCompanion from './components/CursorCompanion';
 
 // Styled Components
 const AppContainer = styled.div`
@@ -147,6 +148,7 @@ function App() {
 
   return (
     <AppContainer>
+      <CursorCompanion />
       <ElectricCursor />
       <AnimatedBackground />
       <FloatingLines />

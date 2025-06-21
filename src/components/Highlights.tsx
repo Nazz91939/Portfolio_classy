@@ -20,16 +20,27 @@ const HighlightsList = styled.ul`
 `;
 
 const HighlightItem = styled(motion.li)`
-  color: #ccd6f6;
+  color: #8892b0;
   margin-bottom: 1rem;
-  padding-left: 1.5rem;
+  padding-left: 2rem;
   position: relative;
+  transition: all 0.3s ease;
   
   &:before {
-    content: '✅';
+    content: '»';
     position: absolute;
     left: 0;
     color: #64ffda;
+    transition: all 0.3s ease;
+  }
+
+  &:hover {
+    color: #ccd6f6;
+    
+    &:before {
+      transform: translateX(5px);
+      color: #fff;
+    }
   }
 `;
 
@@ -48,6 +59,7 @@ const Highlights: React.FC = () => (
       {highlights.map((highlight, idx) => (
         <HighlightItem
           key={idx}
+          data-hover-interactive
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}

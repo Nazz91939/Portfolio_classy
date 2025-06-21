@@ -22,10 +22,19 @@ const SkillsGrid = styled.div`
 
 const SkillBadge = styled(motion.div)`
   background: #0a192f;
+  border: 1px solid #233554;
   border-radius: 4px;
   padding: 0.5rem 1rem;
   color: #ccd6f6;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+    border-color: rgba(100, 255, 218, 0.5);
+    color: #64ffda;
+  }
 `;
 
 const skills: string[] = [
@@ -41,6 +50,7 @@ const Skills: React.FC = () => (
       {skills.map((skill, idx) => (
         <SkillBadge
           key={skill}
+          data-hover-interactive
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
