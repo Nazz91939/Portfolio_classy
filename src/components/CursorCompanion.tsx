@@ -74,7 +74,7 @@ const CursorCompanion: React.FC = () => {
       if (isHovering && hoverTargetRect.current) {
         const rect = hoverTargetRect.current;
         controls.start({
-          x: rect.left + rect.width + 20,
+          x: rect.right - 40,
           y: rect.top + rect.height / 2,
           transition: { type: 'spring', stiffness: 100, damping: 15, mass: 0.8 },
         });
