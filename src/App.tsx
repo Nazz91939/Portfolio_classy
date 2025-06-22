@@ -79,8 +79,8 @@ const pulse = keyframes`
 `;
 
 const ProfileImage = styled.img`
-  width: 450px;
-  height: 450px;
+  width: 455px;
+  height: 455px;
   object-fit: cover;
   object-position: 50% 20%;
   border: 3px solid #64ffda;
