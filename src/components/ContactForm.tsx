@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
 const Section = styled.section`
   background: #112240;
@@ -100,8 +100,8 @@ const ContactForm: React.FC = () => {
         setSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
       }, (err) => {
-        console.log('FAILED...', err);
-        setError('Failed to send message. Please try again later.');
+        console.error('FAILED...', err);
+        setError(`Failed to send message. Error: ${err.text || 'Please try again later.'}`);
       });
   };
 
