@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 const Section = styled.section`
   background: #112240;
@@ -32,7 +33,7 @@ const Input = styled.input`
   font-size: 1rem;
 `;
 
-const Textarea = styled.textarea`
+const TextArea = styled.textarea`
   padding: 0.75rem 1rem;
   border-radius: 4px;
   border: none;
@@ -60,29 +61,75 @@ const Button = styled(motion.button)`
 `;
 
 const ContactForm: React.FC = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError('');
+    setSubmitted(false);
+
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setError('EmailJS is not configured. Please check your environment variables.');
+      return;
+    }
+    
+    emailjs.send(serviceId, templateId, formData, publicKey)
+      .then((response: EmailJSResponseStatus) => {
+        console.log('SUCCESS!', response.status, response.text);
+        setSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+      }, (err) => {
+        console.log('FAILED...', err);
+        setError('Failed to send message. Please try again later.');
+      });
   };
 
   return (
     <Section id="contact">
-      <Title>Contact Me</Title>
+      <Title>Get In Touch</Title>
       <Form onSubmit={handleSubmit}>
-        <Input type="text" placeholder="Your Name" required />
-        <Input type="email" placeholder="Your Email" required />
-        <Textarea placeholder="Your Message" required />
-        <Button
-          type="submit"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Send Message
-        </Button>
+        <Input
+          type="text"
+          name="name"
+          placeholder="Your Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <Input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <TextArea
+          name="message"
+          placeholder="Your Message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        ></TextArea>
+        <Button type="submit">Send Message</Button>
       </Form>
       {submitted && <p style={{ color: '#64ffda', marginTop: '1rem' }}>Thank you for your message!</p>}
+      {error && <p style={{ color: '#ff6b6b', marginTop: '1rem' }}>{error}</p>}
     </Section>
   );
 };

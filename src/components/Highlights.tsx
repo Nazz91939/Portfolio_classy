@@ -3,10 +3,13 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const Section = styled.section`
-  background: #112240;
+  background: rgba(17, 34, 64, 0.75);
+  border: 1px solid #64ffda;
+  box-shadow: 0 0 15px rgba(100, 255, 218, 0.1);
   border-radius: 4px;
   padding: 2rem;
   margin: 2rem 0;
+  backdrop-filter: blur(10px);
 `;
 
 const Title = styled.h2`
@@ -20,27 +23,22 @@ const HighlightsList = styled.ul`
 `;
 
 const HighlightItem = styled(motion.li)`
-  color: #8892b0;
+  color: #ccd6f6;
   margin-bottom: 1rem;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
   position: relative;
-  transition: all 0.3s ease;
-  
+  transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+
+  &:hover {
+    color: #64ffda;
+    transform: translateX(10px);
+  }
+
   &:before {
     content: '»';
     position: absolute;
     left: 0;
     color: #64ffda;
-    transition: all 0.3s ease;
-  }
-
-  &:hover {
-    color: #ccd6f6;
-    
-    &:before {
-      transform: translateX(5px);
-      color: #fff;
-    }
   }
 `;
 
@@ -59,7 +57,6 @@ const Highlights: React.FC = () => (
       {highlights.map((highlight, idx) => (
         <HighlightItem
           key={idx}
-          data-hover-interactive
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}

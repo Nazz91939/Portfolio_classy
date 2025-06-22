@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const FooterContainer = styled.footer`
   background: #0a192f;
@@ -31,9 +31,8 @@ const Copyright = styled.div`
 `;
 
 const socialLinks = [
-  { href: '#', icon: FaGithub },
-  { href: '#', icon: FaLinkedin },
-  { href: '#', icon: FaTwitter },
+  { href: 'https://www.instagram.com/naz_falou/?hl=en', icon: FaInstagram },
+  { href: 'https://www.linkedin.com/in/nazih-falou-a1a20731a/', icon: FaLinkedin },
 ];
 
 const Footer: React.FC = () => (

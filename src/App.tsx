@@ -1,17 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Navbar from './components/Navbar';
-import ProjectCard from './components/ProjectCard';
 import Skills from './components/Skills';
 import Highlights from './components/Highlights';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
-import AnimatedBackground from './components/AnimatedBackground';
+import GlassmorphismBackground from './components/GlassmorphismBackground';
 import ElectricCursor from './components/ElectricCursor';
 import FloatingLines from './components/FloatingLines';
 import CursorCompanion from './components/CursorCompanion';
+
+import Nazz from './images/Nazz.jpg';
+import ROVpic from './images/ROVpic.jpg';
+import MintAndJadeWeb from './images/Mint&JadeWeb.jpg';
+import PastaWnosWeb from './images/PastaWnosWeb.jpg';
+import MobileApp from './images/MobileApp.jpg';
 
 // Styled Components
 const AppContainer = styled.div`
@@ -53,18 +58,122 @@ const HeroSection = styled(Section)`
   }
 `;
 
+const HeroContent = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+`;
+
+const HeroText = styled.div``;
+
+const pulse = keyframes`
+  0% {
+    filter: drop-shadow(0 0 4px rgba(100, 255, 218, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(100, 255, 218, 0.9));
+  }
+  100% {
+    filter: drop-shadow(0 0 4px rgba(100, 255, 218, 0.5));
+  }
+`;
+
+const ProfileImage = styled.img`
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border: 3px solid #64ffda;
+  border-radius: 4px;
+  box-shadow: 0 0 25px rgba(100, 255, 218, 0.3);
+`;
+
 const AboutSection = styled(Section)`
   background: rgba(17, 34, 64, 0.75);
+  backdrop-filter: blur(10px);
   border-radius: 4px;
   padding: 2rem;
   margin: 2rem 0;
 `;
 
 const ProjectsSection = styled(Section)`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  padding: 100px 0;
+`;
+
+const ProjectEntry = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem 0;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  gap: 10px;
+
+  &:nth-of-type(even) {
+    .project-content {
+      grid-column: 1 / 7;
+      text-align: left;
+    }
+    .project-image {
+      grid-column: 7 / -1;
+    }
+    .tech-stack {
+      justify-content: flex-start;
+    }
+  }
+`;
+
+const ProjectContent = styled.div`
+  grid-column: 7 / -1;
+  grid-row: 1 / -1;
+  text-align: right;
+`;
+
+const ProjectTitle = styled.h3`
+  color: #ccd6f6;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+`;
+
+const ProjectDescription = styled.div`
+  background: rgba(17, 34, 64, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 4px;
+  color: #8892b0;
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
+  margin-bottom: 1rem;
+`;
+
+const TechStack = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+`;
+
+const Tech = styled.span`
+  color: #64ffda;
+  font-size: 0.8rem;
+  background: rgba(100, 255, 218, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+`;
+
+const ProjectImageContainer = styled.div`
+  grid-column: 1 / 7;
+  grid-row: 1 / -1;
+  position: relative;
+  border: 2px solid #64ffda;
+  border-radius: 6px;
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.15);
+  
+  img {
+    width: 100%;
+    border-radius: 4px;
+    display: block;
+  }
 `;
 
 const ContactSection = styled(Section)`
@@ -77,13 +186,6 @@ const ContactSection = styled(Section)`
   }
 `;
 
-const ProjectsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  width: 100%;
-`;
-
 // Animation variants
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -94,31 +196,31 @@ const projects = [
   {
     title: "AI-Powered ROV (Remote Operated Vehicle)",
     description: "Built a low-latency aquatic drone with YOLOv5 object detection, ESP32 motor control, and Raspberry Pi-powered video relay. Live video streaming and control are handled through a custom Android app.",
-    image: "https://via.placeholder.com/400x200",
+    image: ROVpic,
     technologies: ["YOLOv5", "ESP32", "Raspberry Pi", "UDP", "Java", "Android Studio"],
     github: "https://github.com/yourusername/rov",
     live: ""
   },
   {
-    title: "Cyberpunk Portfolio Website",
-    description: "A futuristic-themed React website with glowing animations, cursor effects, and stylish transitions.",
-    image: "https://via.placeholder.com/400x200",
-    technologies: ["ReactJS", "Framer Motion", "HTML/CSS"],
-    github: "https://github.com/yourusername/portfolio",
+    title: "Mint & Jade - Coffee Shop Menu",
+    description: "A stylish and modern menu website for a local coffee shop, 'Mint & Jade'. Features an interactive and user-friendly interface.",
+    image: MintAndJadeWeb,
+    technologies: ["ReactJS", "Styled-Components", "HTML/CSS"],
+    github: "https://github.com/yourusername/mintandjade",
     live: ""
   },
   {
-    title: "Restaurant Inventory Management System",
-    description: "A desktop app built with Java Swing and MySQL following MVC principles. Manages orders, stock levels, and reporting.",
-    image: "https://via.placeholder.com/400x200",
-    technologies: ["Java", "JDBC", "MySQL", "NetBeans"],
-    github: "https://github.com/yourusername/inventory-system",
+    title: "PastaWnos - Pasta Restaurant Menu",
+    description: "A vibrant and appetizing menu website for 'PastaWnos', a specialty pasta restaurant. Designed to be easy to navigate and visually appealing.",
+    image: PastaWnosWeb,
+    technologies: ["ReactJS", "CSS", "HTML"],
+    github: "https://github.com/yourusername/pastawnos",
     live: ""
   },
   {
     title: "Mobile App for ROV Control",
     description: "Java-based Android app that streams live detection video from Flask server, displays object history, and controls drone movements.",
-    image: "https://via.placeholder.com/400x200",
+    image: MobileApp,
     technologies: ["Java", "Flask", "UDP", "Android Studio"],
     github: "https://github.com/yourusername/rov-app",
     live: ""
@@ -148,10 +250,9 @@ function App() {
 
   return (
     <AppContainer>
+      <GlassmorphismBackground />
       <CursorCompanion />
       <ElectricCursor />
-      <AnimatedBackground />
-      <FloatingLines />
       <Navbar />
       <MainContent>
         <HeroSection
@@ -162,9 +263,14 @@ function App() {
           variants={fadeInUp}
           transition={{ duration: 0.6 }}
         >
-          <h1>Hi, I'm [Your Name]</h1>
-          <h2>Full Stack Developer</h2>
-          <p>I build exceptional digital experiences.</p>
+          <HeroContent>
+            <HeroText>
+              <h1>Hi, I'm Nazih Falou</h1>
+              <h2>Computer Engineer</h2>
+              <p>I build exceptional digital experiences.</p>
+            </HeroText>
+            <ProfileImage src={Nazz} alt="Nazih Falou" />
+          </HeroContent>
         </HeroSection>
 
         <AboutSection
@@ -186,20 +292,26 @@ function App() {
         <Skills />
         <Highlights />
 
-        <ProjectsSection
-          id="projects"
-          ref={projectsRef}
-          initial="hidden"
-          animate={projectsInView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          transition={{ duration: 0.6 }}
-        >
-          <h2>My Projects</h2>
-          <ProjectsGrid>
-            {projects.map((project, index) => (
-              <ProjectCard key={index} {...project} />
-            ))}
-          </ProjectsGrid>
+        <ProjectsSection id="projects">
+          <h2 style={{ textAlign: 'center', color: '#ccd6f6', fontSize: '2.5rem', marginBottom: '1rem' }}>My Projects</h2>
+          {projects.map((project, index) => (
+            <ProjectEntry key={index}>
+              <ProjectContent className="project-content">
+                <ProjectTitle>{project.title}</ProjectTitle>
+                <ProjectDescription>
+                  <p>{project.description}</p>
+                </ProjectDescription>
+                <TechStack className="tech-stack">
+                  {project.technologies.map((tech) => (
+                    <Tech key={tech}>{tech}</Tech>
+                  ))}
+                </TechStack>
+              </ProjectContent>
+              <ProjectImageContainer className="project-image">
+                <img src={project.image} alt={project.title} />
+              </ProjectImageContainer>
+            </ProjectEntry>
+          ))}
         </ProjectsSection>
 
         <ContactForm />
