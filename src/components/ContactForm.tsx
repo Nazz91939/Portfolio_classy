@@ -87,8 +87,15 @@ const ContactForm: React.FC = () => {
       setError('EmailJS is not configured. Please check your environment variables.');
       return;
     }
+
+    const templateParams = {
+      from_name: formData.name,
+      to_name: 'Nazih Falou', // Or your name
+      message: formData.message,
+      reply_to: formData.email,
+    };
     
-    emailjs.send(serviceId, templateId, formData, publicKey)
+    emailjs.send(serviceId, templateId, templateParams, publicKey)
       .then((response: EmailJSResponseStatus) => {
         console.log('SUCCESS!', response.status, response.text);
         setSubmitted(true);
