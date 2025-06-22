@@ -89,8 +89,9 @@ const ContactForm: React.FC = () => {
     }
 
     const templateParams = {
-      from_name: formData.name,
-      message: `Sender's Email: ${formData.email}\n\nMessage:\n${formData.message}`,
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
     };
     
     emailjs.send(serviceId, templateId, templateParams, publicKey)
