@@ -174,7 +174,20 @@ const ProjectImageContainer = styled.div`
     width: 100%;
     border-radius: 4px;
     display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+    }
   }
+`;
+
+const ProjectLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+  display: block;
 `;
 
 const ContactSection = styled(Section)`
@@ -208,7 +221,7 @@ const projects = [
     image: MintAndJadeWeb,
     technologies: ["ReactJS", "Styled-Components", "HTML/CSS"],
     github: "https://github.com/yourusername/mintandjade",
-    live: ""
+    live: "https://mintandjadecoffeeshop.github.io/MintAndJade/"
   },
   {
     title: "PastaWnos - Pasta Restaurant Menu",
@@ -216,7 +229,7 @@ const projects = [
     image: PastaWnosWeb,
     technologies: ["ReactJS", "CSS", "HTML"],
     github: "https://github.com/yourusername/pastawnos",
-    live: ""
+    live: "https://nazz91939.github.io/PastaWNos/"
   },
   {
     title: "Mobile App for ROV Control",
@@ -309,7 +322,13 @@ function App() {
                 </TechStack>
               </ProjectContent>
               <ProjectImageContainer className="project-image">
-                <img src={project.image} alt={project.title} />
+                {project.live ? (
+                  <ProjectLink href={project.live} target="_blank" rel="noopener noreferrer">
+                    <img src={project.image} alt={project.title} />
+                  </ProjectLink>
+                ) : (
+                  <img src={project.image} alt={project.title} />
+                )}
               </ProjectImageContainer>
             </ProjectEntry>
           ))}
