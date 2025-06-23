@@ -34,16 +34,16 @@ const AppContainer = styled.div`
 const MainContent = styled.main`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 80px 2rem 0;
   position: relative;
   z-index: 2;
 
   @media (max-width: 768px) {
-    padding: 0 1rem;
+    padding: 70px 1rem 0;
   }
 
   @media (max-width: 480px) {
-    padding: 0 0.5rem;
+    padding: 60px 0.5rem 0;
   }
 `;
 
