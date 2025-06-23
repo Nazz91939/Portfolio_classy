@@ -53,6 +53,14 @@ const NavLink = styled(motion.a)`
   &:hover::after {
     width: 100%;
   }
+
+  cursor: pointer;
+  padding: 0.5rem;
+
+  @media (max-width: 768px) {
+    display: block;
+    font-size: 2rem;
+  }
 `;
 
 const MobileMenuButton = styled.button`
@@ -86,6 +94,11 @@ const MobileMenu = styled(motion.div)`
     align-items: center;
     justify-content: center;
     gap: 2rem;
+
+    ${NavLink} {
+      font-size: 2rem;
+      font-weight: 600;
+    }
   }
 `;
 
