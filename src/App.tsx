@@ -37,6 +37,14 @@ const MainContent = styled.main`
   padding: 0 2rem;
   position: relative;
   z-index: 2;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 0.5rem;
+  }
 `;
 
 const Section = styled(motion.section)`
@@ -45,6 +53,15 @@ const Section = styled(motion.section)`
   flex-direction: column;
   justify-content: center;
   padding: 100px 0;
+
+  @media (max-width: 768px) {
+    padding: 80px 0;
+    min-height: auto;
+  }
+
+  @media (max-width: 480px) {
+    padding: 60px 0;
+  }
 `;
 
 const HeroSection = styled(Section)`
@@ -52,12 +69,34 @@ const HeroSection = styled(Section)`
     color: #ccd6f6;
     font-size: 4rem;
     margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 2.5rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 2rem;
+    }
   }
   
   h2 {
     color: #64ffda;
     font-size: 2rem;
     margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.25rem;
+    }
+  }
+
+  p {
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -65,6 +104,12 @@ const HeroContent = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
 `;
 
 const HeroText = styled.div``;
@@ -89,6 +134,16 @@ const ProfileImage = styled.img`
   border: 3px solid #64ffda;
   border-radius: 4px;
   box-shadow: 0 0 25px rgba(100, 255, 218, 0.3);
+
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
+
+  @media (max-width: 480px) {
+    width: 250px;
+    height: 250px;
+  }
 `;
 
 const AboutSection = styled(Section)`
@@ -98,10 +153,27 @@ const AboutSection = styled(Section)`
   padding: 2rem;
   margin: 2rem 0;
 
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+
   h2 {
     color: #ccd6f6;
     font-size: 2.5rem;
     margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.75rem;
+    }
   }
 
   h3 {
@@ -112,12 +184,27 @@ const AboutSection = styled(Section)`
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
+
+    @media (max-width: 768px) {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+    }
   }
 
   p {
     max-width: 800px;
     color: #8892b0;
     line-height: 1.7;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
   }
 `;
 
@@ -126,6 +213,31 @@ const ProjectsSection = styled(Section)`
   flex-direction: column;
   gap: 5rem;
   padding: 100px 0;
+
+  @media (max-width: 768px) {
+    gap: 3rem;
+    padding: 60px 0;
+  }
+
+  @media (max-width: 480px) {
+    gap: 2rem;
+    padding: 40px 0;
+  }
+
+  h2 {
+    text-align: center;
+    color: #ccd6f6;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.75rem;
+    }
+  }
 `;
 
 const ProjectEntry = styled.div`
@@ -134,16 +246,34 @@ const ProjectEntry = styled.div`
   align-items: center;
   gap: 10px;
 
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   &:nth-of-type(even) {
     .project-content {
       grid-column: 1 / 7;
       text-align: left;
+
+      @media (max-width: 768px) {
+        grid-column: 1 / -1;
+        text-align: center;
+      }
     }
     .project-image {
       grid-column: 7 / -1;
+
+      @media (max-width: 768px) {
+        grid-column: 1 / -1;
+      }
     }
     .tech-stack {
       justify-content: flex-start;
+
+      @media (max-width: 768px) {
+        justify-content: center;
+      }
     }
   }
 `;
@@ -152,12 +282,26 @@ const ProjectContent = styled.div`
   grid-column: 7 / -1;
   grid-row: 1 / -1;
   text-align: right;
+
+  @media (max-width: 768px) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    text-align: center;
+  }
 `;
 
 const ProjectTitle = styled.h3`
   color: #ccd6f6;
   font-size: 1.75rem;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const ProjectDescription = styled.div`
@@ -168,6 +312,17 @@ const ProjectDescription = styled.div`
   color: #8892b0;
   box-shadow: 0 10px 30px -15px rgba(0,0,0,0.7);
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+
+  p {
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
 `;
 
 const TechStack = styled.div`
@@ -176,6 +331,11 @@ const TechStack = styled.div`
   justify-content: flex-end;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    gap: 0.4rem;
+  }
 `;
 
 const Tech = styled.span`
@@ -184,6 +344,11 @@ const Tech = styled.span`
   background: rgba(100, 255, 218, 0.1);
   padding: 0.25rem 0.75rem;
   border-radius: 15px;
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
 `;
 
 const ProjectImageContainer = styled.div`
@@ -193,6 +358,11 @@ const ProjectImageContainer = styled.div`
   border: 2px solid #64ffda;
   border-radius: 6px;
   box-shadow: 0 0 20px rgba(100, 255, 218, 0.15);
+
+  @media (max-width: 768px) {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
   
   img {
     width: 100%;
@@ -204,6 +374,10 @@ const ProjectImageContainer = styled.div`
     &:hover {
       transform: scale(1.02);
       box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+
+      @media (max-width: 768px) {
+        transform: none;
+      }
     }
   }
 `;
@@ -221,6 +395,14 @@ const ContactSection = styled(Section)`
     color: #ccd6f6;
     font-size: 2.5rem;
     margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.75rem;
+    }
   }
 `;
 
@@ -341,7 +523,7 @@ function App() {
         <Highlights />
 
         <ProjectsSection id="projects">
-          <h2 style={{ textAlign: 'center', color: '#ccd6f6', fontSize: '2.5rem', marginBottom: '1rem' }}>My Projects</h2>
+          <h2>My Projects</h2>
           {projects.map((project, index) => (
             <ProjectEntry key={index}>
               <ProjectContent className="project-content">

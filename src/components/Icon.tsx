@@ -8,6 +8,16 @@ const IconWrapper = styled.span`
   margin-right: 0.75rem;
   font-size: 1.5rem;
   vertical-align: middle;
+
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+    margin-right: 0.6rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+  }
 `;
 
 interface IconProps {

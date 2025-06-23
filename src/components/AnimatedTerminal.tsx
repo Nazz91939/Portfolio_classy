@@ -37,6 +37,17 @@ const TerminalContainer = styled.div`
   position: relative;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    padding: 2rem 1rem 1rem;
+    margin: 2rem auto;
+    max-width: 100%;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.5rem 0.8rem 0.8rem;
+    margin: 1.5rem auto;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -46,6 +57,14 @@ const TerminalContainer = styled.div`
     height: 30px;
     background: rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(100, 255, 218, 0.2);
+
+    @media (max-width: 768px) {
+      height: 25px;
+    }
+
+    @media (max-width: 480px) {
+      height: 20px;
+    }
   }
 
   &::after {
@@ -57,6 +76,20 @@ const TerminalContainer = styled.div`
     font-size: 1rem;
     letter-spacing: 6px;
     text-shadow: none;
+
+    @media (max-width: 768px) {
+      top: 4px;
+      left: 10px;
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+    }
+
+    @media (max-width: 480px) {
+      top: 3px;
+      left: 8px;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+    }
   }
 `;
 
@@ -67,6 +100,16 @@ const TerminalLine = styled.div`
   white-space: pre-wrap;
   word-break: break-all;
   min-height: 1.2em;
+  
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    min-height: 1.1em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+    min-height: 1em;
+  }
   
   &::before {
     content: '> ';
@@ -84,6 +127,18 @@ const Cursor = styled.span`
   box-shadow: 0 0 8px rgba(100, 255, 218, 0.7);
   vertical-align: middle;
   border-radius: 1px;
+
+  @media (max-width: 768px) {
+    width: 8px;
+    height: 1.1em;
+    margin-left: 4px;
+  }
+
+  @media (max-width: 480px) {
+    width: 6px;
+    height: 1em;
+    margin-left: 3px;
+  }
 `;
 
 const AnimatedTerminal: React.FC = () => {

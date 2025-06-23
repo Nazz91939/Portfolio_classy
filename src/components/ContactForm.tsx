@@ -9,11 +9,31 @@ const Section = styled.section`
   padding: 2rem;
   margin: 2rem 0;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 `;
 
 const Title = styled.h2`
   color: #64ffda;
   margin-bottom: 2rem;
+  font-size: 2.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Form = styled.form`
@@ -22,6 +42,11 @@ const Form = styled.form`
   gap: 1.5rem;
   max-width: 400px;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    gap: 1rem;
+  }
 `;
 
 const Input = styled.input`
@@ -31,6 +56,20 @@ const Input = styled.input`
   background: #0a192f;
   color: #ccd6f6;
   font-size: 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  &::placeholder {
+    color: #8892b0;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -41,6 +80,23 @@ const TextArea = styled.textarea`
   color: #ccd6f6;
   font-size: 1rem;
   min-height: 120px;
+  resize: vertical;
+
+  @media (max-width: 768px) {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.95rem;
+    min-height: 100px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+    min-height: 80px;
+  }
+
+  &::placeholder {
+    color: #8892b0;
+  }
 `;
 
 const Button = styled(motion.button)`
@@ -55,9 +111,40 @@ const Button = styled(motion.button)`
   font-family: inherit;
   margin-top: 1rem;
 
+  @media (max-width: 768px) {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
   &:hover {
     background: rgba(100, 255, 218, 0.1);
   }
+`;
+
+const Message = styled.p`
+  margin-top: 1rem;
+  font-size: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
+`;
+
+const SuccessMessage = styled(Message)`
+  color: #64ffda;
+`;
+
+const ErrorMessage = styled(Message)`
+  color: #ff6b6b;
 `;
 
 const ContactForm: React.FC = () => {
@@ -134,8 +221,8 @@ const ContactForm: React.FC = () => {
         ></TextArea>
         <Button type="submit">Send Message</Button>
       </Form>
-      {submitted && <p style={{ color: '#64ffda', marginTop: '1rem' }}>Thank you for your message!</p>}
-      {error && <p style={{ color: '#ff6b6b', marginTop: '1rem' }}>{error}</p>}
+      {submitted && <SuccessMessage>Thank you for your message!</SuccessMessage>}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </Section>
   );
 };

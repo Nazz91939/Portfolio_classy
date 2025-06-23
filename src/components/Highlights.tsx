@@ -10,11 +10,31 @@ const Section = styled.section`
   padding: 2rem;
   margin: 2rem 0;
   backdrop-filter: blur(10px);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 `;
 
 const Title = styled.h2`
   color: #64ffda;
   margin-bottom: 2rem;
+  font-size: 2.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const HighlightsList = styled.ul`
@@ -28,10 +48,30 @@ const HighlightItem = styled(motion.li)`
   padding-left: 1.5rem;
   position: relative;
   transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
+  font-size: 1rem;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+    padding-left: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 0.6rem;
+    padding-left: 1rem;
+  }
 
   &:hover {
     color: #64ffda;
     transform: translateX(10px);
+
+    @media (max-width: 768px) {
+      transform: translateX(5px);
+    }
   }
 
   &:before {
