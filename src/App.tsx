@@ -12,6 +12,8 @@ import GlassmorphismBackground from './components/GlassmorphismBackground';
 import ElectricCursor from './components/ElectricCursor';
 import FloatingLines from './components/FloatingLines';
 import CursorCompanion from './components/CursorCompanion';
+import AnimatedTerminal from './components/AnimatedTerminal';
+import Icon from './components/Icon';
 
 import Nazz from './images/Nazz.jpg';
 import ROVpic from './images/ROVpic.jpg';
@@ -95,6 +97,28 @@ const AboutSection = styled(Section)`
   border-radius: 4px;
   padding: 2rem;
   margin: 2rem 0;
+
+  h2 {
+    color: #ccd6f6;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    color: #ccd6f6;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  p {
+    max-width: 800px;
+    color: #8892b0;
+    line-height: 1.7;
+  }
 `;
 
 const ProjectsSection = styled(Section)`
@@ -296,13 +320,23 @@ function App() {
           transition={{ duration: 0.6 }}
         >
           <h2>About Me</h2>
-          <p>
-            I'm a Computer and Communication Engineering graduate with a passion for blending real-world hardware systems with intelligent software solutions.
-            I specialize in full-stack development, computer vision, and IoT integrations. From building AI-powered ROVs to crafting dynamic web and mobile apps, I combine engineering skill with creative design thinking.
-            I love creating beautiful, functional, and user-friendly digital experiences.
-          </p>
-        </AboutSection>
 
+          <h3>
+            <Icon emoji="🧠" label="Brain" /> Technical + AI-Driven
+          </h3>
+          <p>
+            I'm a Computer and Communication Engineering graduate with a passion for building intelligent systems that merge hardware and software seamlessly. Over time, I've grown skilled at using AI—not just as a tool, but as a core collaborator in my development process. From streamlining code generation to enhancing real-time object detection on embedded devices, I harness AI to accelerate workflows, reduce friction, and bring ambitious ideas to life faster and smarter.
+          </p>
+
+          <h3>
+            <Icon emoji="🎨" label="Paint Palette" /> Creative + AI-Augmented Thinking
+          </h3>
+          <p>
+            I see AI as a creative partner—one that helps me prototype faster, design more intuitively, and push the boundaries of what's possible. Whether I'm automating repetitive tasks, optimizing user experiences with machine learning, or ideating new features through prompt engineering, I'm constantly finding ways to use AI to amplify both productivity and imagination. It's not just about building faster—it's about building better, with purpose and innovation at the core.
+          </p>
+          <AnimatedTerminal />
+        </AboutSection>
+        
         <Skills />
         <Highlights />
 
